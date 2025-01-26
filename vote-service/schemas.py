@@ -71,3 +71,16 @@ class PollListResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+class PostCreate(BaseModel):
+    content: str
+    tonality: Optional[str] = None
+
+class PostResponse(PostCreate):
+    id: int
+    created_at: datetime
+    user_id: int
+    poll_id: int
+    
+    class Config:
+        orm_mode = True
