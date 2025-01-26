@@ -47,3 +47,16 @@ class UserOption(Base):
     user = relationship("User", back_populates="votes")
     option = relationship("Option", back_populates="votes")
 
+
+class Post(Base):
+    __tablename__ = "posts"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    content = Column(Text)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    poll_id = Column(Integer, ForeignKey("polls.id"))
+    tonality = Column(String(255), nullable=True)
+    
+    author = relationship("User", back_populates="posts")
+    poll = relationship("Poll", back_populates="posts")
