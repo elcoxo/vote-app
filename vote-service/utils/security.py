@@ -17,7 +17,7 @@ load_dotenv()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 SECRET_KEY = os.getenv('JWK_SECRET_KEY')
 ALGORITHM = os.getenv('JWK_ALGORITHM')
-ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv('JWK_ACCESS_TOKEN_EXPIRE_MINUTES')
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('JWK_ACCESS_TOKEN_EXPIRE_MINUTES'))
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
