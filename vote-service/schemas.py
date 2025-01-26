@@ -33,3 +33,41 @@ class UserProfileResponse(BaseModel):
     class Config:
         orm_mode = True
 
+class OptionCreate(BaseModel):
+    text: str
+
+class OptionResponse(BaseModel):
+    id: int
+    text: str
+    poll_id: int
+
+    class Config:
+        orm_mode = True
+        
+class OptionInput(BaseModel):
+    text: str  
+    
+class PollCreate(BaseModel):
+    title: str
+    description: str
+    options: List[OptionInput]
+
+class PollResponse(PollCreate):
+    id: int
+    owner_id: int
+    options: List[OptionResponse] = []
+
+    class Config:
+        orm_mode = True
+
+class Vote(BaseModel):
+    option_id: int
+    
+class PollListResponse(BaseModel):
+    id: int
+    title: str
+    description: str
+    votes_count: int = Field(0, description="Votes count")
+
+    class Config:
+        orm_mode = True
